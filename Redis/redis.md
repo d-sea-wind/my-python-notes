@@ -109,13 +109,21 @@
 + 数据文件存储路径
 
   ```shell
-  dir /var/lib/redis
+  dir /var/lib/redis	# 黑马
+  dir /home/			# 旭哥
+  ```
+
++ 日志级别
+
+  ```shell
+  loglevel warning
   ```
 
 + 日志文件
 
   ```shell
-  logfile /var/log/redis/redis-server.log
+  logfile "/var/log/redis/redis-server.log"	# 黑马
+  logfile "/tmp/redis.log"					# 旭哥
   ```
 
 + 数据库
@@ -140,8 +148,15 @@
 
 ## 4. 数据操作
 
+
+
 ## 5. 与Python交互
+
+
 
 ## 6. 搭建主从复制
 
+
+
 ## 7. 搭建集群
+
