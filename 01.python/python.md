@@ -16,7 +16,7 @@
 
 + pip
 
-  > 豆瓣源:https://pypi.douban.com/simple/
+  > [豆瓣源](https://pypi.douban.com/simple/)
 
   ```python
   # 1.查看项目用了哪些包
@@ -89,9 +89,51 @@
   >
   > 4.模块内部的类名，可以采用 "下划线+首字母大写" 的形式，如 _Book;
   >
-  > 5.函数名、类中的属性名和方法名，应全部使用小写字母，多个单词之间可以用下划线分割；
+  > 5.函数名、类中的属性名和方法名，应全部使用小写字母，多个单词之间可以用下划线分割 ；
   >
   > 6.常量命名应全部使用大写字母，单词之间可以用下划线分割；
 
 ## 5.关键字
 
+> Python 是严格区分大小写的，保留字也不例外
+
+```python
+import keyword
+print(keyword.kwlist)
+##########结果##########
+['False', 'None', 'True', 'and', 'as', 'assert', 'break', 'class', 'continue', 'def', 'del', 'elif', 'else', 'except', 'finally', 'for', 'from', 'global', 'if', 'import', 'in', 'is', 'lambda', 'nonlocal', 'not', 'or', 'pass', 'raise', 'return', 'try', 'while', 'with', 'yield']
+```
+
+## 6.内置函数
+
++ 参考文档
+
+  ```python
+  https://docs.python.org/zh-cn/3/library/functions.html
+  ```
+
++ 展示
+
+  ![内置函数](.\img\内置函数.png)
+
++ 注意
+
+  > 不要使用内置函数的名字作为标识符使用（例如变量名、函数名、类名、模板名、对象名等），虽然这样做 Python 解释器不会报错，但这会导致同名的内置函数被覆盖，从而无法使用。
+
+## 7.变量和常量
+
+### 1. 变量
+
+> 在编程语言中，将数据放入变量的过程叫做赋值（Assignment）。Python 使用等号`=`作为赋值运算符
+
++ 格式
+
+  > name 表示变量名；value 表示值，也就是要存储的数据。
+
+  ```python
+  name = value
+  ```
+
+  > 注意：变量是标识符的一种，它的名字不能随便起，要遵守 [Python 标识符命名规范](http://c.biancheng.net/view/4186.html)，还要避免和 [Python 内置函数](http://c.biancheng.net/view/4208.html)以及 [Python 保留字](http://c.biancheng.net/view/4188.html)重名。
+
+### 2.常量
