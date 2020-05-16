@@ -54,12 +54,45 @@
 > python 编码规范
 
 + 每个 import 语句只导入一个模块，尽量避免一次导入多个模块
+
+  ```python
+  #推荐
+  import os
+  import sys
+  #不推荐
+  import os,sys
+  ```
+
 + 不要在行尾添加分号，也不要用分号将两条命令放在同一行
+
+  ```python
+  #不推荐
+  height=float(input("输入身高：")) ; weight=fioat(input("输入体重：")) 
+  ```
+
 + 建议每行不超过 80 个字符，如果超过，建议使用小括号将多行内容隐式的连接起来，而不推荐使用反斜杠 \ 进行连接。
+
+  > 注意，此编程规范适用于绝对大多数情况，但以下 2 种情况除外：
+  >
+  > - 导入模块的语句过长。
+  > - 注释里的 URL。
+
+  ```python
+  #推荐
+  s=("C语言中文网是中国领先的C语言程序设计专业网站，"
+  "提供C语言入门经典教程、C语言编译器、C语言函数手册等。")
+  #不推荐
+  s="C语言中文网是中国领先的C语言程序设计专业网站，\
+  提供C语言入门经典教程、C语言编译器、C语言函数手册等。"
+  ```
+
 + 使用必要的空行可以增加代码的可读性，通常在顶级定义（如函数或类的定义）之间空两行，而方法定义之间空一行，另外在用于分隔某些功能的位置也可以空一行。
+
 + 通常情况下，在运算符两侧、函数参数之间以及逗号两侧，都建议使用空格进行分隔。
 
 ## 4.标识符
+
+> python 中是区分大小写的
 
 + 命名规则
 
@@ -108,10 +141,8 @@ print(keyword.kwlist)
 
 + 参考文档
 
-  ```python
-  https://docs.python.org/zh-cn/3/library/functions.html
-  ```
-
+  [内置函数](https://docs.python.org/zh-cn/3/library/functions.html)
+  
 + 展示
 
   ![内置函数](.\img\内置函数.png)
@@ -149,7 +180,15 @@ NAME = "小米"
 ### 1. 输入——input()函数
 
 + 定义：           输入：从外部获取变量的值
+
 + 输入函数：   input()：阻塞，等待输入
+
+  > num表示接收值，input输入的类型是字符串
+
+  ```python
+  num = input("请输入您要输入的：")
+  ```
+
 + 注意：           input()函数返回的是一个字符串类型
 
 ### 2. 输出——print()函数
@@ -766,28 +805,713 @@ num1 = 12 + 4j
 
 ## 4.str
 
+### 1. 定义——字符串不可修改
 
+> 字符串是单引号或者双引号括起来的任意文本。
+> 但是注意引号本身是一种表现形式，不属于字符串一部分
+> 注意：如果字符串本身带引号，'sunck is a "very" good man'
 
-### 3.转义字符
+### 2. 形式
 
 ```python
-\n		# 换行
-\t		# 制表符
-\\		# \
-\r		# 回车
-\"		# "
-\'		# '
+"sunck is a good man"
+'sunck is a mice man'
+'''sunck is a good man''' 	# 这种常用于注释
 ```
 
+### 3. 转义字符
+
++ 常用转义字符
+
+  ```
+  常用转义字符   \
+  反斜杠     \\
+  单引号     \'
+  双引号     \"
+  换行       \n
+  跨平台换行   \r\n
+  回车(清除前面的数据)   \r
+  Tab（横向制表符）       \t
+  ```
+
++ 特殊
+
+  > 为了简化python允许使用'r'表示，''内部的字符串默认不转义
+
+  ```python
+  print(r'\\\t\\')     #原生字符串
+  ```
+
++ 示例
+
+  ```python
+  # 如果字符串里面有很多个字符需要转义，就需要加入很多,
+  print('\\\t\\')
+  ```
+
+### 4. 字符串运算
+
++ 字符串拼接
+
+  ```python
+  str3 = 'sunck is a good man'
+  str4 = "sunck is a nice man"
+  print(str3 + str4)
+  # -------------结果---------------------
+  # sunck is a good mansunck is a nice man
+  ```
+
++ 重复输出字符串
+
+  ```python
+  str3 = 'sunck is a good man'
+  print(str3 * 3)
+  # -----------------结果---------------------------
+  # sunck is a good mansunck is a good mansunck is a good man
+  ```
+
++ 查找下标字符串
+
+  > 注意：下标不要越界，否则会报错
+
+  ```python
+  str3 = 'sunck is a good man'
+  print(str3[1])		# u
+  ```
+
++ 切片
+
+  > 切片是指对操作的对象截取其中一部分的操作。**字符串、列表、元组**都支持切片操作。
+  >
+  > 语法：[起始:结束:步长]，也可以简化使用 [起始:结束]
+  >
+  > 注意：选取的区间从"起始"位开始，到"结束"位的前一位结束（不包含结束位本身)，步长表示选取间隔。
+
+  ```python
+  str3 = 'sunck is a good man'
+  print("*"+str3[11:15]+"*")	# *good*
+  ```
+
+  ```python
+  str3 = 'sunck is a good man'
+  print(11:-1:-1)
+  ```
+
++ 是否存在
+
+  ```python
+  str3 = 'sunck is a good man'
+  print("sunck" in str3)		# True
+  print("kaige" in str3)		# False
+  ```
+
+### 5. 内置方法
+
+#### 1. 最基础的方法
+
+```python
+# 1.eval()
+	# 功能：将字符串当成有效的表达式来求值并返回计算结果
+	# 原型：eval(*args,**kwargs)
+	print(eval("12+3"))      #15
+    
+# 2.ord()
+	# 功能：获取字符的ASCII整数表示
+	print(ord("A"))     #65
+    
+# 3.chr()
+	# 功能：把数字编码转换为对应的字符
+	print(chr(65))       #A
+    
+# 4.str()
+	# 功能：转成字符串
+	print(str(123))     #"123"
+    
+# 5.max(str)
+	# 功能：返回字符串中最大的字母
+	str32 = "sunck is a good man"
+	print(max(str32)) 	# u
+    
+# 6.min(str)
+	# 功能：返回字符串中最小的字母
+```
+
+#### 2. 获取长度
+
+```python
+len(string)
+	# 功能：返回字符串的长度（按字符个数计算）
+	# 原型：len(*args, **kwargs)
+print(len("sunck is a good man"))	 # 19
+print(len("sunck is a good man凯"))	# 20 
+```
+
+#### 3. 查找内容
+
+```python
+# 1.find(str[,beg= 0,end=len(string)])
+	# 功能：检测str是否包含在string中，如果指定beg和end，则检测指定范围内是否包含。如果包含返回第一个开始的索引值， 否则返回-1
+	# 原型：find(self, sub, start=None, end=None)
+	str17 = "sunck"
+	str18 = "cool"
+	str19 = "aaasunck is a good man! sunck is a nice man"
+	res = str19.find(str18)
+	print(res)		# -1
+    
+# 2.rfind(str,beg= 0,end=len(string))
+	# 功能：类似于find()，只不过从右边开始查找
+	# 原型：rfind(self, sub, start=None, end=None)
+    
+# 3.index(str,beg= 0,end=len(string))
+	# 功能：跟find()一样，区别在于如果str不存在会报异常
+	# 原型：index(self, sub, start=None, end=None)
+	str20 = "sunck"
+	str21 = "cool"
+	str22 = "aaasunck is a good man! sunck is a nice man"
+	res = str22.index(str20)
+	print(res)		# 3
+    
+# 4.rindex(str,beg= 0,end=len(string))
+	# 功能：类似于index()，只不过从右边开始查找
+	# 原型：rindex(self, sub, start=None, end=None)
+```
+
+#### 4. 判断
+
+```python
+# 1.startswith(str[,beg=0,end=len(string)])
+	# 功能：检查字符串是否以str开头， 是返回True，否则返回Flase。如果指定beg和end，则在指定范围内检查
+	# 原型：startswith(self, prefix, start=None, end=None)
+	str40 = "sunck is a good man"
+	print(str40.startswith("sunck"))	# True
+	print(str40.startswith("good"))		# False
+    
+# 2.endswith(suffix[,beg=0,end=len(string)])
+	# 功能：检查字符串是否以str结尾，是返回True，否则返回Flase。 如果指定beg和end，则在指定范围内检查
+	# 原型：endswith(self, suffix, start=None, end=None)
+    
+# 3.isalpha()
+	# 功能：如果字符串至少有一个字符并且所有的字符都是字母返回True，否则返回Flase（判断全是字母）
+	# 原型：isalpha(self)
+	print("".isalpha())			# False
+	print("abc".isalpha())		# True
+	print("abc12".isalpha())	# False
+    
+# 4.isdigit()
+	# 功能：如果字符串只包含数字返回True，否则返回Flase（判断全是数字的）
+	# 原型： isdigit(self)
+	print("".isdigit())			# False
+	print("123".isdigit())		# True
+	print("abc123".isdigit())	# False
+    
+# 5.isalnum()
+	# 功能：如果字符串至少有一个字符并且所有的字符，都是字母或数字返回True，否则返回Flase（判断全是子母河数字组成）
+	# 原型：isalnum(self)
+	print("".isalnum())			# False
+	print("abc".isalnum())		# True
+	print("abc12".isalnum())	# True
+    
+# 6.isspace()
+	# 功能：如果字符串中只含有空格则返回True。否则返回False（判断全是空格）
+	# 原型：isspace(self)
+	print("".isspace())		# False
+	print("  ".isspace())	# True
+	print(" a".isspace())	# False
+	print("\t".isspace())	# True
+	print("\n".isspace())	# True
+    
+# 7.isupper()
+	# 功能：如果字符串至少有一个字符并且所有的字母,都是大写字母返回True，否则返回Flase（判断全是大写字母和数字组成或特殊符号）
+	# 原型：isupper(self)
+	print("sunck".isupper())		# False
+	print("SUNCK".isupper())		# True
+	print("SUNCK#$%".isupper())		# True
+	print("SUNCK123".isupper())		# True
+    
+# 8.islower()
+	# 功能：如果字符串至少有一个字符并且所有的字母,都是小写字母返回True，否则返回Flase（判断全是小写字母和数字或特殊字符）
+    
+# 9.istitle()
+	# 功能：如果字符串是标题化的返回True，否则返回Flase
+    
+# 10.isnumeric()
+	# 功能：如果字符串只包含数字返回True，否则返回Flase（判断全是数字）
+    
+# 11.isdecimal()
+	# 功能：检测字符串只包含十进制数字
+```
+
+#### 5. 计算出现次数
+
+```python
+# count(str[,beg= 0,end=len(string)])
+	# 功能：返回str在string里面出现的次数，如果beg或者end指定则返回指定范围内 str出现的次数
+	# 原型：count(self, sub, start=None, end=None)
+str15 = "sunck"
+str16 = "sunck is a good man! sunck is a nice man"
+print(str16.count(str15))		# 2 
+```
+
+#### 6. 替换内容
+
+```python
+# 1.replace(old,new[,max])
+	# 功能：将字符串中的old替换成new，如果max指定， 则不超过max次 
+	# 原型：replace(self, old, new, count=None)
+str33 = "sunck is a good man, " \
+   		"sunck is a nice man, " \
+        "sunck is a cool man, " \
+        "sunck is a handsome man"
+str34 = str33.replace("sunck", "kaige",2)
+print(str34)
+# ------------------结果----------------------------
+# kaige is a good man, kaige is a nice man, sunck is a cool man, sunck is a handsome man
+
+# 2.两个函数一起用
+# 2.1 maketrans()
+	# 原型：maketrans(self, *args, **kwargs)
+	# 功能：创建字符映射的转换表，对于接受两个参数的，第一个是字符串，表示要转换的字符, 第二个也是字符串表示转换的目标
+t = str.maketrans("ag", "12")
+# 2.2 translate(table)
+	# 原型：translate(self, table)
+	# 功能：根据str给出的表转换字符串
+str35 = "sunck is a good man"
+print(str35.translate(t))	# sunck is 1 2ood m1n
+```
+
+#### 7. 切割字符串
+
+```python
+# 1.split(str="",num=string.count(str))
+	# 功能:按照str进行切割
+	# 原型：split(self, sep=None, maxsplit=-1)
+str29 = "sunck#is#a#good#man#!"
+wordList = str29.split("#")
+print(wordList)	# ['sunck', 'is', 'a', 'good', 'man', '!']
+print(type(wordList)) 	# <class 'list'>
+# 2.rsplit(self, sep=None, maxsplit=-1)
+	# 从右往左切割字符串
+    
+# 3.splitlines([keepends])
+	# 功能：按照行('\r', '\r\n', '\n'),如果keepends为Flase，不包含换行符
+	# 原型：splitlines(self, keepends=None)
+str30 = '''good 
+nice
+cool
+handsome
+'''
+wordList2 = str30.splitlines()
+print(wordList2)	# ['good ', 'nice', 'cool', 'handsome']
+# 4.partition()
+	# print("hello".partition("e"))  # ('h', 'e', 'llo')
+    
+# 5.rpartition()
+	# 从右往左，跟partition用法一样
+```
+
+#### 8. 修改大小写
+
+```python
+# 1.capitalize()
+	# 原型：capitalize(self)
+	# 功能：将字符串中的第一个字符转为大写,其余转为小写
+str5 = "sunck Is A Good Man"
+str6 = str5.capitalize()
+print(str5,str6)	# sunck Is A Good Man Sunck is a good man
+# 2.title()
+	# 原型：title(self)
+	# 功能：得到“标题化”的字符串，每个单词的首字符大写，其余的小写
+str7 = "sunck Is A Good MaN"
+str8 = str7.title()
+print(str7,str8)	# sunck Is A Good MaN Sunck Is A Good Man
+# 3.upper()
+	# 原型： upper(self)
+	# 功能：转换字符串中所有的小写字母为大写
+    
+# 4.lower()
+	# 原型：lower(self)
+	# 功能：转换字符串中所有的大写字母为小写
+str1 = "Sunck Is A Good Man"
+str2 = str1.lower()    
+print(str1,str2)	#Sunck Is A Good Man sunck is a good man
+# 5.swapcase()
+	# 原型：swapcase(self)
+	# 功能：将字符串中小写转为大写，大写转为小写
+str3 = "Sunck Is A Good Man"
+str4 = str3.swapcase()
+print(str3,str4)	# Sunck Is A Good Man sUNCK iS a gOOD mAN
+```
+
+#### 9. 空格处理
+
+```python
+# 1.ljust(width[,fillchar])
+	# 原型： ljust(self, width, fillchar=None)
+	# 功能：返回一个指定宽度width的左对齐字符串,fillchar为填充字符，默认为空格
+str11 = "good"
+str12 =str11.ljust(20, "#")
+print("*"+str12+"*")	# *good################*
+# 2.rjust(width[,fillchar])
+	# 原型：rjust(self, width, fillchar=None)
+	# 功能：返回一个指定宽度width的右对齐字符串,fillchar为填充字符，默认为空格
+        
+# 3.center(width[,fillchar])
+	# 原型：center(self, width, fillchar=None)
+	# 功能：返回一个指定宽度width的居中字符串,fillchar为填充字符，默认为空格
+str9 = "good"
+str10 =str9.center(20, "#")
+print("*"+str10+"*")	# *########good########*
+# 4.lstrip()
+	# 原型：lstrip(self, chars=None)
+	# 功能：截掉字符串左边指定的字符，默认为空格
+str23 = "        sunck is a good man"
+str24 = str23.lstrip()
+print(str23)	#         sunck is a good man
+print(str24)	# sunck is a good man
+str25 = "********sunck is a good man"
+str26 = str25.lstrip("*")
+print(str25)	# ********sunck is a good man
+print(str26)	# sunck is a good man
+# 5.rstrip()
+	# 原型：rstrip(self, chars=None)
+	# 功能：截掉字符串右边指定的字符，默认为空格
+    
+# 6.strip([chars])
+	# 原型：strip(self, chars=None)
+	# 功能：在字符串上执行lstrip和rstrip
+str27 = "********sunck is a good man**"
+str28 = str27.strip("*")
+print(str27)	# ********sunck is a good man**
+print(str28)	# sunck is a good man
+# 7.zfill(width)
+	# 原型：zfill(self, width)
+	# 功能：返回指定宽度width的右对齐字符串，填充0
+str13 = "good"
+str14 =str13.zfill(20)
+print("*"+str14+"*")	# *0000000000000000good*
+```
+
+#### 10. 字符串拼接
+
+```python
+# 1.join(seq)
+	# 原型：join(self, iterable)
+str31 = " ".join(wordList)
+print(str31)	# sunck is a good man !
+```
+
+#### 11. 编码与解码
+
++ 编码
+
+  ```python
+  # encode(encoding="UTF-8",errors="strict")
+  	# 原型：encode(self, encoding='utf-8',errors='strict')
+  	# 功能：以encoding指定的编码格式进行编码，
+      # 如果出错默认报一个ValueError异常，
+      # 除非errors指定的是igonre或者replace
+  str41 = "凯哥是一个好男人"
+  str42 = str41.encode()
+  str43 = str41.encode("GBK")#gb2312
+  print(str41)	# 凯哥是一个好男人
+  print(str42)	# b'\xe5\x87\xaf\xe5\x93\xa5\xe6\x98\xaf\xe4\xb8\x80\xe4\xb8\xaa\xe5\xa5\xbd\xe7\x94\xb7\xe4\xba\xba'
+  print(str43)	# b'\xbf\xad\xb8\xe7\xca\xc7\xd2\xbb\xb8\xf6\xba\xc3\xc4\xd0\xc8\xcb'
+  ```
+
++ 解码
+
+  ```python
+  # decode(encoding="UTF-8",errors="strict")
+  	# 原型：decode(self, *args, **kwargs)
+  print(str42.decode("UTF-8"))	# 凯哥是一个好男人
+  print(str43.decode("GBK"))		# 凯哥是一个好男人
+  ```
+
+## 5.bytes
+
+>  bytes 类型用来表示一个字节串。“字节串“不是编程术语，是我自己“捏造”的一个词，用来和字符串相呼应。
+>
+> bytes 是 Python 3.x 新增的类型，在 Python 2.x 中是不存在的。
+
+### 1.bytes和str区别
+
++ 字符串由若干个字符组成，以字符为单位进行操作；字节串由若干个字节组成，以字节为单位进行操作。
++ 字节串和字符串除了操作的数据单元不同之外，它们支持的所有方法都基本相同。
++ 字节串和字符串都是不可变序列，不能随意增加和删除数据。
+
+### 2. 创建bytes对象
+
++ 通过构造函数创建空bytes
+
+  ```python
+  b1 = bytes()
+  ```
+
++ 通过空字符串创建空bytes
+
+  ```python
+  b2 = b''
+  ```
+
++ 通过b前缀将字符串转换成 bytes
+
+  ```python
+  b3 = b'http://c.biancheng.net/python/'
+  print("b3: ", b3)	# b3:  b'http://c.biancheng.net/python/'
+  print(b3[3])		# 112
+  print(b3[7:22])		# b'c.biancheng.net'
+  ```
+
++ 为 bytes() 方法指定字符集
+
+  ```python
+  b4 = bytes('C语言中文网8岁了', encoding='UTF-8')
+  print("b4: ", b4)	# b4:  b'C\xe8\xaf\xad\xe8\xa8\x80\xe4\xb8\xad\xe6\x96\x87\xe7\xbd\x918\xe5\xb2\x81\xe4\xba\x86'
+  ```
+
++ 通过 encode() 方法将字符串转换成 bytes
+
+  ```python
+  b5 = "C语言中文网8岁了".encode('UTF-8')
+  print("b5: ", b5)	# b5:  b'C\xe8\xaf\xad\xe8\xa8\x80\xe4\xb8\xad\xe6\x96\x87\xe7\xbd\x918\xe5\xb2\x81\xe4\xba\x86'
+  ```
+
+### 3.将 bytes 对象转换为字符串
+
+```python
+#通过 decode() 方法将 bytes 转换成字符串
+str1 = b5.decode('UTF-8')
+print("str1: ", str1)	# str1:  C语言中文网8岁了
+```
+
+## 6.list
+
+### 1. 列表格式
+
+```python
+格式： 列表名 = [列表选项1，列表选项2，......，列表选项n]
+```
+
+### 2. 创建列表
+
++ 创建空列表
+
+  ```python
+  list1 = []
+  print(list1)		# []
+  print(list())		# []
+  ```
+
++ 创建带有元素的列表
+
+  ```python
+  list2 = [18,19,20,"good",True,None]
+  ```
+
+### 3. 列表的操作——列表可修改
+
++ 查找
+
+  ```python
+  list3 = [18,19,20,21,22]	#取值：列表名[下标]
+  print(list3[2])			# 20
+  ```
+
++ 修改(替换)
+
+  ```python
+  list3 = [18,19,20,21,22]    #替换：列表名[下标] = 新值
+  list3[2] = 200
+  print(list3)			# [18, 19, 200, 21, 22]
+  # 注意：下标不要越界
+  ```
+
++ 组合
+
+  ```python
+  list4 = [1,2,3]
+  list5 = [4,5,6]
+  print(list4,list5)	# [1, 2, 3] [4, 5, 6]
+  print(list4 + list5)# [1, 2, 3, 4, 5, 6]
+  ```
+
++ 重复
+
+  ```python
+  list6 = [7,8,9]
+  print(list6 * 3)	# [7, 8, 9, 7, 8, 9, 7, 8, 9]
+  ```
+
++ in        not in
+
+  ```python
+  print(1 in [1,2,3]) # True
+  ```
+
++ 截取
+
+  ```python
+  list7 = [1,2,3,4,5,6,7,8,9,0]
+  print(list7[2])			# 3
+  print(list7[1:4])		# [2, 3, 4]
+  # -1表示的是最后一个元素的下标
+  # -2表示倒数第二个元素的下标
+  print(list7[1:-1])		# [2, 3, 4, 5, 6, 7, 8, 9]
+  print(list7[4:])		# [5, 6, 7, 8, 9, 0]
+  print(list7[:4])		# [1, 2, 3, 4]
+  ```
+
+>二维列表：列表中的元数是一维列表 
+>本质：一维列表
+
+### 4. 列表的方法
+
+#### 1. 最基础的方法
+
+```python
+# 1.len(list)
+	# 返回列表中元素的个数
+list8 = [1,2,3,4,5]
+print(len(list8))	# 5
+
+# 2.max(list)
+	# 返回列表中元素的最大值
+    
+# 3.min(list)
+	# 返回列表中元素的最小值
+    
+# 4.list(seq)
+	# 转为列表,seq为字符串、元组、集合
+```
+
+#### 2. 添加元素
+
+> append		extend		insert
+
+```python
+# 1.list.append(obj)
+	# 在列表的末尾添加一个新的元素
+list1 = [1,2,3,4,5]
+list1.append(6)
+list1.append([9,8,7])
+print(list1)	# [1, 2, 3, 4, 5, 6, [9, 8, 7]]
+# 2.list.extend(seq)
+	# 在列表末尾一次性追加多个元素
+list2 = [1,2,3,4,5]
+list2.extend([9,8,7])
+print(list2)	# [1, 2, 3, 4, 5, 9, 8, 7]
+# 3.list.insert(index,obj)
+	# 将元数插入列表,不会覆盖原元数，原元数按顺序后移
+list3 = [1,2,3,4,5]
+list3.insert(2,100)
+print(list3)	# [1, 2, 100, 3, 4, 5]
+```
+
+#### 3. 查找元素
+
+> index		count		
+
+```python
+# 1.list.index(obj)
+	# 从列表中找出某个值第一个匹配项的下标
+list7 = [1,2,3,4,5]
+print(list7.index(2))	# 1
+# 2.list.count(obj)
+	# 统计某个元数在列表中出现的次数
+list7 = [1,2,3,4,5,2]
+print(list7.count(2))	# 2
+```
+
+#### 4. 删除元素
+
+> pop		remove		clear
+
+```python
+# 1.list.pop(obj=list[-1])
+	# 移除列表中指定下标的元素，默认删除最后一个元素
+list4 = [1,2,3,4,5]
+list4.pop()
+print(list4)	# [1, 2, 3, 4]
+# 2.list.remove(obj)
+	# 移除列表中的某个值的第一个匹配项
+list5 = [1,2,3,4,5,3]
+list5.remove(3)
+print(list5)	# [1, 2, 4, 5, 3]
+# 3.list.clear()
+	# 清空列表
+list6 = [1,2,3,4,5]
+list6.clear()
+print(list6)	# []
+```
+
+#### 5. 正序和倒序
+
++ 正序
+
+  ```python
+  # list.sort([func])
+  	# 将列表中的元素从小到大排序
+  list9 = [4,7,1,3,9,6,5]
+  list9.sort()
+  list9.reverse()
+  print(list9)	# [9, 7, 6, 5, 4, 3, 1]
+  ```
+
++ 倒序
+
+  ```python
+  # list.reverse()
+  	# 倒序列表中元素
+  list8 = [1,2,3,4,5]
+  list8.reverse()
+  print(list8)	# [5, 4, 3, 2, 1]
+  ```
+
+#### 6. 拷贝
+
++ == 和 is
+
+  ```python
+  # ==：判断的是数值
+  # is：判断的是内存地址
+  --------------------------------------
+  num1 = -6
+  num2 = -6
+  print(id(num1),id(num2))# 2900494760784 2900494760880
+  print(num1 == num2)		# True
+  print(num1 is num2)		# False
+  ```
+
++ 小整数对象
+
+  ```python
+  # 范围：[-5:256]最好在python环境中演示，pycharm进行了其他的优化
+  
+  a = [1,2,3,4,5,[7,8,9]]
+  b = a
+  print(a,b)# [1, 2, 3, 4, 5, [7, 8, 9]] [1, 2, 3, 4, 5, [7, 8, 9]]
+  print(b == a)# True
+  print(b is a)# True
+  a[5][1] = 100
+  print(a,b)# [1, 2, 3, 4, 5, [7, 100, 9]] [1, 2, 3, 4, 5, [7, 100, 9]]
+  print(id(a),id(b))# 2900492517640 2900492517640
+  print(id(a[5]),id(b[5]))# 2900495531208 2900495531208
+  ```
+
++ 浅拷贝与深拷贝
+
+  ```
+  copy()浅拷贝：只拷贝表层元素(数值)
+  deepcopy()深拷贝：在内存中重新创建所有子元素,深拷贝的区分的前提是列表中要有其他列表
+  ```
 
 
-## 5.list
 
-## 6.tuple
+## 7.tuple
 
-## 7.dict
+## 8.dict
 
-## 8.set
+## 9.set
 
 
 
