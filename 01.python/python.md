@@ -775,6 +775,8 @@ num1 = 12 + 4j
   	# 将x转为一个浮点数
   ```
 
+
+
 ## 2.bool
 
 ### 1. 定义
@@ -793,6 +795,8 @@ num1 = 12 + 4j
 	元组：除空元组都是Ture
 ```
 
+
+
 ## 3.None
 
 ### 1. 定义
@@ -802,6 +806,8 @@ num1 = 12 + 4j
 ### 2. 作用
 
 > 定义个变量时，不知道初始值要赋值成什么，那么就赋值为None，当有确定值在进行赋值操作。
+
+
 
 ## 4.str
 
@@ -1227,6 +1233,8 @@ print(str31)	# sunck is a good man !
   print(str43.decode("GBK"))		# 凯哥是一个好男人
   ```
 
+
+
 ## 5.bytes
 
 >  bytes 类型用来表示一个字节串。“字节串“不是编程术语，是我自己“捏造”的一个词，用来和字符串相呼应。
@@ -1283,6 +1291,8 @@ print(str31)	# sunck is a good man !
 str1 = b5.decode('UTF-8')
 print("str1: ", str1)	# str1:  C语言中文网8岁了
 ```
+
+
 
 ## 6.list
 
@@ -1509,9 +1519,326 @@ print(list6)	# []
 
 ## 7.tuple
 
-## 8.dict
+### 1. 本质和特性
 
-## 9.set
++ 本质
+
+  > 元组是一种有序集合
+
++ 特性
+
+  + 与列表非常类似
+  + 一旦初始化就不能修改
+  + 使用小括号
+
+### 2. 定义形式
+
+```python
+元组名 = （元组选项1，元组选项2，....元组选项n）
+```
+
+### 3. 创建元组
+
++ 创建空元祖
+
+  ```python
+  t1 = ()
+  print(t1)	# ()
+  ```
+
++ 创建带有参数的元组
+
+  ```python
+  #元数类型可以不同
+  t2 = (1,2,3,4,5,"good")
+  print(t2)	# (1, 2, 3, 4, 5, 'good')
+  ```
+
++ 创建带有一个参数的元组
+
+  ```python
+  #注意：加个逗号
+  t3 = (1,)
+  print(t3)	# (1,)
+  ```
+
+### 4. 元组的操作
+
++ 查询
+
+  ```python
+  #取值 元组名[下标]
+  t4 = (1,2,3,4,5)
+  print(t4[1])	# 2
+  #print(t4[5])#下标越界
+  print(t4[-1])	# 5
+  print(t4[-5])	# 1
+  #print(t4[-6])#下标越界
+  ```
+
++ 组合
+
+  ```python
+  t6 = (1,2,3)
+  t7 = (6,7,8)
+  print(t6 + t7)	# (1, 2, 3, 6, 7, 8)
+  ```
+
++ 重复
+
+  ```python
+  print(t6 * 3)	# (1, 2, 3, 1, 2, 3, 1, 2, 3)
+  ```
+
++ 截取
+
+  ```python
+  t8 = (1,2,3,4,5,6,7,8,9)
+  print(t8[2:7])	# (3, 4, 5, 6, 7)
+  ```
+
+### 5. 元组的方法
+
+> index   
+
+```python
+1.len(tuple)
+	返回元组的元素个数
+t9 = (1,2,3)
+print(len(t9))	# 3
+2.max(tuple)
+	求元组中最大的元素
+    
+3.tuple(seq)
+	将seq转换成元组
+l = [1,2,3,4,5,6]
+t10 = tuple(l)
+print(t10)	# (1, 2, 3, 4, 5, 6)
+```
+
+
+
+## 8. dict
+
+### 1. 定义与特点
+
++ 定义
+
+  > 使用键-值对(key-value)的形式存储数据， 具有极快的查找速度
+
++ 特点
+
+  + 字典中的key必须唯一
+  + key必须是不可变对象
+    + 字符串、整数等 都是不可变的，可以作为key
+    + 列表时间可变的、不能作为key
+  + key一般为字符串
+
++ 格式：
+
+  ```python
+  {'key1':value1,'key2':value2,......,'keyn':valuen}
+  ```
+
+### 2. 示例
+
+```pyhton
+stu1 = {"name":"sunck", "age":18, "sex":"男","height":173.5,"weight":75}
+stu2 = {"name":"liudehua", "age":55, "sex":"男","height":172,"weight":72}
+stus = [stu1, stu2]
+print(stus)
+```
+
+### 3. 字典的操作
+
++ 获取
+
+  ```python
+  # 1.字典名[key] 
+  stu3 = {"name":"sunck", "age":18, "sex":"男","height":173.5,"weight":75}
+  print(stu3["name"])	# sunck
+  
+  # 2.字典名.get(key)
+  stu3 = {"name":"sunck", "age":18, "sex":"男","height":173.5,"weight":75}  
+  print(stu3.get("socre"))	# None
+  ```
+
++ 添加
+
+  ```python
+  stu3["socre"] = 99.99
+  ```
+
++ 删除
+
+  ```python
+  # 1.pop()
+  stu3.pop("socre")
+  print(stu3)
+  
+  # 2.del 运算符也可以删除一个指定的元素del person['address']
+  ```
+
+### 4. 字典的遍历
+
+```python
+stu4 = {"name": "sunck", "age": 18, "sex": "男", "height": 173.5, "weight": 75}
+for key in stu4:
+    print(key)
+#----------结果-------------
+# name
+# age
+# sex
+# height
+# weight
+for value in stu4.values():
+    print(value)
+#----------结果-------------
+# sunck
+# 18
+# 男
+# 173.5
+# 75
+for key, value in stu4.items():
+    print(key+": "+str(value))
+#----------结果-------------
+# name: sunck
+# age: 18
+# sex: 男
+# height: 173.5
+# weight: 75
+for index, key in enumerate(stu3):
+    print(index, key)
+#----------结果-------------
+# 0 name
+# 1 age
+# 2 sex
+# 3 height
+# 4 weight
+```
+
+
+
+## 9. set 
+
+### 1. 定义和本质
+
+> 定义：与dict类似，是一组key的集合(不存储value)
+>
+> 本质：无序和无重复的集合
+
+### 2. 集合的操作
+
++ 集合的创建
+
+  ```python
+  # 需要用一个list或者tuple作为输入集合  
+  s1 = set([1,2,3,4,5,3,4])
+  print(s1)
+  # 注意列表中的重复元素会被过滤掉
+  ```
+
++ 集合的添加
+
+  ```python
+  s2 = set([1,2,3,4,5])
+  #插入list、字符串、元组的每个元素
+  #iterable 可迭代对象
+  #s2.update("sunck")
+  #s2.update([6,7,8])
+  #s2.update((6,7,8))
+  #不能直接插入数字
+  #s2.update(9)
+  print(s2)
+  ```
+
++ 集合的删除
+
+  ```python
+  s3 = set([1,2,3,4,5])
+  # 从左侧开始删除
+  print(s3.pop())
+  # 删除对应的元素，如果元素不存在会报KeyError的异常
+  
+  s3 = set([1,2,3,4,5])                           
+  s3.remove(3)
+  print(s3)
+  ```
+
++ 集合的遍历
+
+  ```python
+  s4 = set([6,2,3,4,5])
+  for key in s4:
+      print(key)
+  print("------")
+  for index, key in enumerate(s4):
+      print(index, key)
+  ```
+
++ 集合的交集与并集
+
+  ```python
+  s5 = set([1,2,3])
+  s6 = set([2,4,3])
+  # 交集
+  print(s5 & s6)
+  # 并集
+  print(s5 | s6)
+  ```
+
++ format的使用
+
+  ```python
+  # 使用 {} 作为占位符
+  s1 = '你好，我的名字是{},我今年{}岁了'.format('zhangsan', 18)
+  print(s1)
+  
+  # {数字}
+  s2 = '你好，我的名字是{0},我今年{1}岁了'.format('jerry', 20)
+  print(s2)
+  
+  # format后面的参数个数可以多于前面占位符的个数
+  s3 = '你好，我的名字是{1},我今年{0}岁了,我同学也{0}岁了'.format(23, 'chris', 'hello')
+  print(s3)
+  
+  # 使用关键字参数  {arg}
+  s4 = '你好，我的名字是{name},我今年{age}岁了'.format(age='32', name='tony', gender='female')
+  print(s4)
+  
+  # 使用数字和关键字混合使用。
+  # 位置参数和关键字参数注意:关键字参数一定要写在位置参数的后面
+  # s5 = '你好，我的名字是{0},我今年{age}岁了.他的名字是{1}'.format(age=23,'tom', 'jerry')
+  s5 = '你好，我的名字是{1},我今年{age}岁了.他的名字是{0}'.format('tom', 'jerry', age=12)
+  print(s5)
+  
+  # 使用空和关键字参数混合使用
+  s6 = '你好，我的名字是{},我今年{age}岁了.他的名字是{}'.format('rose', 'jack', age=18)
+  print(s6)
+  
+  # 空和数字不能混合使用
+  # s6 = '你好，我的名字是{0},我今年{2}岁了.他的名字是{}'.format('rose', 'jack',18)
+  # print(s6)
+  
+  # 可以传入一个元组或者列表
+  # 但是需要注意：元组或者列表需要添加 * 进行拆包
+  infos = ('henry', 18, 'helen')
+  s7 = '你好，我的名字是{},我今年{}岁了.他的名字是{}'.format(*infos)
+  print(s7)
+  
+  # 可以传入一个字典，对应关键字参数
+  # 传入字典的时候，需要添加  ** 进行拆包
+  xxx = {'name': 'stark', 'age': 34, 'his_name': 'john'}
+  s8 = '你好，我的名字是{name},我今年{age}岁了.他的名字是{his_name}'.format(**xxx)
+  print(s8)
+  ```
+
+
+
+
+# 5.function
+
+
 
 
 
