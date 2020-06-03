@@ -7,6 +7,9 @@ git config --global user.email 'github上的邮箱'
 # 我自己的github连接
 git config --global user.name 'DHF-code'
 git config --global user.email '604197230@qq.com'
+# 另一个账号
+git config --global user.name 'dhf-love-code'
+git config --global user.email '17855370071@163.com'
 # git常用命令
 git init	# 初始化一个仓库
 git add 	# 添加指定的修改过的文件到暂存区
