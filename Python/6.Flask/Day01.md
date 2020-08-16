@@ -62,7 +62,7 @@ B/S结构是WEB兴起后的一种网络结构模式，WEB浏览器是客户端�
 
 CS/BS区别：
 
-![](G:\千峰教育\笔记\Typora\6.Flask\img\1.png)
+![](.\img\1.png)
 
 #### 3.MVC/MTV
 
@@ -90,7 +90,7 @@ MVC
 			控制器接受用户请求
 			调用模型，获取数据
 			控制器将数据展示到视图中
-![img](G:\千峰教育\笔记\Typora\6.Flask\img\2.png)
+![img](.\img\2.png)
 
 MTV也叫做MVT
 
@@ -241,7 +241,7 @@ Flask请求流程
 	模板返回给用户
 ```
 
-![img](G:\千峰教育\笔记\Typora\6.Flask\img\3.png)
+![img](.\img\3.png)
 
 #### 9.Flask路由参数
 

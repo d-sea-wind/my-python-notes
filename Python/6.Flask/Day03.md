@@ -165,6 +165,8 @@
 # select from where group by hanving order_by
 	（1）order_by
 			persons = Person.query.order_by("-p_age")
+			降序：
+				persons = Person.query.order_by(db.desc("p_age"))
 	（2）limit
 			persons = Person.query.limit(5)
 	（3）offset

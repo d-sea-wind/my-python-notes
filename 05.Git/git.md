@@ -81,5 +81,37 @@ ls ~/.ssh/id_rsa*
 
 
 
+# 3.工作中常用的git命令
+
+```python
+# 1.创建新仓库
+git init 	# 在当前目录新建一个Git代码库
+git init [project-name]	# 新建一个目录，将其初始化为git代码库
+
+# 2.克隆远程仓库
+git clone [url]	# 克隆一个项目和它的整个代码历史(版本信息)
+
+# 3.查看分支
+git branch 		# 查看当前分支
+git branch -a 	# 查看所有分支
+
+# 4.切换分支
+git checkout [分支名] # 切换到指定的分支上
+
+# 5.拉取到本地
+git pull 	# 将远程仓库提交拉取到本地仓库，同时将代码与本地仓库合并
+
+# 推送到远程
+git push 	# 将本地仓库提交推送到远程仓库
+
+# 回退
+git reset –hard HEAD ^  	# 回退到上个版本
+git reset –hard HEAD ^^		# 回退到上上个版本
+```
+
+
+
+
+
 
 

@@ -228,7 +228,7 @@ session登陆使用
 			 (4)需要配置SECRET_KEY='110'
 			 	注意：flask把session的key存储在客户端的cookie中，通过这个key可以从flask的内存中获取用户的session信息，出于安全性考虑，使用secret_key进行加密处理。所以需要先设置secret_key的值。
 			 	
-			（5）其他配置--视情况而定
+			（5）其他配置--视情况而定(前缀)
 				app.config['SESSION_KEY_PREFIX']='flask'
 		
      特殊说明：
@@ -381,7 +381,7 @@ session登陆使用
 flask-sqlalchemy
      使用步骤：1.pip install flask-sqlalchemy
              2.创建SQLALCHEMY对象
-                ①：db=SQLAlchemy(app=app)
+                ①：db=SQLAlchemy(app=app) 在models.py中
                 ②：db=SQLAlchemy()  上面这句话一般会放到models中  因为需要db来调用属性 db.init_app(app=app)
               3.config中配置  SQLALCHEMY_DATABASE_URI
                                     数据库 + 驱动 :// 用户:密码@ 主机:端口/数据库
