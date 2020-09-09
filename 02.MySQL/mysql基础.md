@@ -497,7 +497,7 @@ select version();
     ```mysql
     create table stuinfo(
     	id int,
-	stuname varchar(20),
+			stuname varchar(20),
     	gender char(1),
     	seat int,
     	age int,
