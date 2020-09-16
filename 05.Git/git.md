@@ -124,6 +124,35 @@ git commit -m "提交说明"	# 将暂存区的修改提交到本地仓库
 
 
 
+# 4. 个人总结
+
+> 当matser主分支被别人更新了，我开发的分支拉取master更新部分
+
+```python
+# 1. 查看一下master是否更新了
+git pull
+# 2. 切换到master主分支
+git checkout master
+# 3. 把远程master仓库拉取到本地
+git pull
+# 4. 在切换到自己的分支
+git checkout 自己分支名
+# 5. 在自己分支上合并主分支
+git merge master
+# 6. 查看一下冲突(最好执行一下)
+git status
+# 7. 解决冲突部分
+xxxxxx
+# 8. 把解决的部分添加到暂存区
+git add 冲突文件
+# 9. 把暂存区更新到本地仓库
+git commit -m "本地提交说明"
+# 10. 把本地仓库推送到远程仓库
+git push
+```
+
+
+
 
 
 
