@@ -151,6 +151,18 @@ git commit -m "本地提交说明"
 git push
 ```
 
+> git 修改远程分支名称
+
+```python
+1.首先 git branch -m 旧分支名 新分支名
+
+2.其次 git push --delete origin 旧分支名
+
+3.将新分支名推上去 git push origin 新分支名
+
+4.将新本地分支和远程相连 git branch --set-upsteam-to origin/新分支名
+```
+
 
 
 
