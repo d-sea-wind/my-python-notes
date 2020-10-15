@@ -163,9 +163,29 @@ git push
 4.将新本地分支和远程相连 git branch --set-upsteam-to origin/新分支名
 ```
 
+> git 打tag标签
 
-
-
+```python
+1.选择所要在哪个分支上打标签
+git checkout 分支名
+2.查看所有标签
+git tag
+3.本地打新标签
+git tag <tag name>  
+// 或者
+git tag <tag name> b04b189b8249e74a363b2bec0bfae53ae7441fd7 // 在某个commit上打tag
+4.本地推送到远程
+git push origin <tag name>	// 推送一个标签到远程
+git push origin --tags		// 推送全部未推送的本地标签
+====================其他的git命令====================
+1.删除本地标签
+git tag -d <tag name>
+2.并删除远程标签
+git push origin :refs/tags/<tag name> //本地tag删除了，在执行该句，删除远程tag
+3.附注标签
+git tag -a <tag name> -m <message>
+eg:git tag -a V1.1.0 -m 'v1.0.0 release' 
+```
 
 
 
