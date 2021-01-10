@@ -837,7 +837,7 @@ SET auto_increment_increment=3;
 
   > 常用的日期函数
 
-   	![常见日期函数](./img/常见日期函数.png)
+  ![常见日期函数](./img/常见日期函数.png)
 
 + 其他函数(补充)
 
